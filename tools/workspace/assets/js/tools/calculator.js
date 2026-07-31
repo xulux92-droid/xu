@@ -1,0 +1,7 @@
+
+import { $, $$ } from '../core/utils.js';
+const keys = ['7','8','9','/','4','5','6','*','1','2','3','-','0','.','%','+'];
+function sanitize(v=''){ return String(v).replace(/[^0-9+\-*/().%]/g,''); }
+function result(){ try{ $('#calcDisplay').value = Function(`return (${sanitize($('#calcDisplay').value||'0')})`)(); } catch{ $('#calcDisplay').value='Error'; } }
+export function render(){ return `<div class="card-grid"><section class="card"><input id="calcDisplay" placeholder="0" /><div class="tool-grid" id="calcPad">${keys.map(k=>`<button class="btn ${'+-*/'.includes(k)?'primary':'ghost'}" data-key="${k}">${k}</button>`).join('')}</div><div class="action-row"><button class="btn primary" id="calcEq">Hitung</button><button class="btn ghost" id="calcBack">Backspace</button><button class="btn ghost" id="calcClear">Clear</button></div></section></div>`; }
+export function init(){ $$('#calcPad [data-key]').forEach(btn=>btn.onclick=()=>$('#calcDisplay').value=sanitize($('#calcDisplay').value+btn.dataset.key)); $('#calcEq').onclick=result; $('#calcBack').onclick=()=>$('#calcDisplay').value=$('#calcDisplay').value.slice(0,-1); $('#calcClear').onclick=()=>$('#calcDisplay').value=''; $('#calcDisplay').addEventListener('input',()=>$('#calcDisplay').value=sanitize($('#calcDisplay').value)); $('#calcDisplay').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); result(); } }); }

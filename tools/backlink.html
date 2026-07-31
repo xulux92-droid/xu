@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GET-GIT Backlink Updater</title>
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:radial-gradient(circle at top,#11345a,#05070d 55%,#000);
+      color:#fff;
+      min-height:100vh;
+      padding:24px;
+    }
+    .wrap{max-width:1180px;margin:auto}
+    .hero{
+      border:1px solid rgba(0,234,255,.22);
+      background:rgba(255,255,255,.06);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:0 0 32px rgba(0,234,255,.12);
+      margin-bottom:18px;
+    }
+    h1{margin:0 0 8px;color:#00eaff;text-shadow:0 0 18px rgba(0,234,255,.55)}
+    p{color:#d6eaff;line-height:1.6}
+    .grid{display:grid;grid-template-columns:390px 1fr;gap:18px;align-items:start}
+    .card{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.07);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 0 24px rgba(0,0,0,.24);
+    }
+    label{display:block;margin:12px 0 6px;font-weight:800;color:#fff}
+    input,textarea,select{
+      width:100%;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(0,0,0,.35);
+      color:#fff;
+      border-radius:12px;
+      padding:11px 12px;
+      outline:none;
+    }
+    textarea{min-height:130px;resize:vertical;font-family:Consolas,Monaco,monospace}
+    button{
+      border:0;
+      border-radius:12px;
+      padding:12px 14px;
+      font-weight:900;
+      cursor:pointer;
+      color:#06121b;
+      background:linear-gradient(135deg,#00eaff,#77ffcc);
+      box-shadow:0 0 18px rgba(0,234,255,.25);
+      margin-top:10px;
+      width:100%;
+    }
+    button.secondary{background:linear-gradient(135deg,#ffd166,#ff9f1c)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .status{
+      white-space:pre-wrap;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:14px;
+      padding:12px;
+      min-height:80px;
+      color:#d7fffd;
+      font-family:Consolas,Monaco,monospace;
+      font-size:13px;
+    }
+    .list{
+      display:grid;
+      gap:10px;
+      max-height:680px;
+      overflow:auto;
+      padding-right:6px;
+    }
+    .item{
+      border:1px solid rgba(255,255,255,.13);
+      background:rgba(0,0,0,.28);
+      border-radius:14px;
+      padding:12px;
+    }
+    .item a{color:#00eaff;text-decoration:none;font-weight:800;word-break:break-all}
+    .item small{display:block;color:#a9bdd4;margin-top:5px;word-break:break-all}
+    .pill{
+      display:inline-flex;
+      border:1px solid rgba(0,234,255,.22);
+      color:#00eaff;
+      border-radius:999px;
+      padding:5px 9px;
+      font-size:12px;
+      margin:4px 4px 0 0;
+      background:rgba(0,234,255,.08);
+    }
+    .note{font-size:13px;color:#ffdf9d}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <h1>GET-GIT Backlink Updater</h1>
+    <p>Tool lokal untuk update file <b>get-link.html</b> dan <b>get-konten.html</b> langsung ke GitHub repo yang connect ke Cloudflare Pages. Token jangan dipublish, kecuali lu memang kangen bencana digital.</p>
+    <span class="pill">Target: get-git/get-link.html</span>
+    <span class="pill">Target: get-git/get-konten.html</span>
+    <span class="pill">Deploy: GitHub → Cloudflare Pages</span>
+  </section>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Config GitHub</h2>
+
+      <label>GitHub Token</label>
+      <input id="token" type="password" placeholder="ghp_xxx / fine-grained token">
+
+      <label>Owner / Username</label>
+      <input id="owner" placeholder="contoh: xulux92-droid">
+
+      <label>Repository</label>
+      <input id="repo" placeholder="nama repo yang connect ke Cloudflare">
+
+      <label>Branch</label>
+      <input id="branch" value="main">
+
+      <label>Folder Path</label>
+      <input id="folder" value="get-git">
+
+      <div class="row">
+        <button id="saveCfg" class="secondary">Save Config Lokal</button>
+        <button id="loadBoth">Load Data</button>
+      </div>
+
+      <hr style="border-color:rgba(255,255,255,.1);margin:18px 0">
+
+      <h2>Tambah Link</h2>
+
+      <label>Mode Update</label>
+      <select id="mode">
+        <option value="both">Update 2 file</option>
+        <option value="link">get-link.html saja</option>
+        <option value="konten">get-konten.html saja</option>
+      </select>
+
+      <label>URL</label>
+      <textarea id="urls" placeholder="1 URL per baris&#10;https://example.com/&#10;https://example.com/about/"></textarea>
+
+      <label>Anchor</label>
+      <textarea id="anchors" placeholder="1 anchor per baris&#10;sabung ayam online&#10;judi bola online"></textarea>
+
+      <label>Commit Message</label>
+      <input id="message" value="update get-git backlink list">
+
+      <button id="addUpdate">Add & Update GitHub</button>
+      <button id="previewBtn" class="secondary">Preview Tanpa Update</button>
+
+      <p class="note">Catatan: get-link.html akan pakai anchor domain otomatis kalau anchor kosong. get-konten.html pakai anchor dari kolom Anchor.</p>
+    </div>
+
+    <div class="card">
+      <h2>Status</h2>
+      <div id="status" class="status">Belum load data.</div>
+
+      <h2>Preview List</h2>
+      <div id="list" class="list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+const FILES = {
+  link: "get-link.html",
+  konten: "get-konten.html"
+};
+
+let cache = {
+  link: { sha: "", html: "", items: [] },
+  konten: { sha: "", html: "", items: [] }
+};
+
+function log(msg){
+  $("status").textContent = msg;
+}
+
+function escHtml(str=""){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function decodeBase64Utf8(b64){
+  const bin = atob(b64.replace(/\n/g,""));
+  const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+function encodeBase64Utf8(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+
+function getCfg(){
+  return {
+    token: $("token").value.trim(),
+    owner: $("owner").value.trim(),
+    repo: $("repo").value.trim(),
+    branch: $("branch").value.trim() || "main",
+    folder: $("folder").value.trim().replace(/^\/+|\/+$/g,"") || "get-git"
+  };
+}
+
+function saveCfg(){
+  const cfg = getCfg();
+  localStorage.setItem("getGitCfg", JSON.stringify({
+    owner: cfg.owner,
+    repo: cfg.repo,
+    branch: cfg.branch,
+    folder: cfg.folder
+  }));
+  log("Config disimpan lokal. Token tidak disimpan. Otak manusia kadang aman juga.");
+}
+
+function loadCfg(){
+  try{
+    const cfg = JSON.parse(localStorage.getItem("getGitCfg") || "{}");
+    if(cfg.owner) $("owner").value = cfg.owner;
+    if(cfg.repo) $("repo").value = cfg.repo;
+    if(cfg.branch) $("branch").value = cfg.branch;
+    if(cfg.folder) $("folder").value = cfg.folder;
+  }catch(e){}
+}
+
+function contentsUrl(file){
+  const cfg = getCfg();
+  const path = `${cfg.folder}/${file}`;
+  return `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(path).replaceAll("%2F","/")}?ref=${encodeURIComponent(cfg.branch)}`;
+}
+
+function validateCfg(){
+  const cfg = getCfg();
+  if(!cfg.token || !cfg.owner || !cfg.repo || !cfg.branch) {
+    throw new Error("Config belum lengkap. Isi token, owner, repo, branch.");
+  }
+  return cfg;
+}
+
+async function githubGet(file){
+  const cfg = validateCfg();
+  const res = await fetch(contentsUrl(file), {
+    headers: {
+      "Authorization": `Bearer ${cfg.token}`,
+      "Accept": "application/vnd.github+json"
+    }
+  });
+  if(!res.ok){
+    throw new Error(`Gagal ambil ${file}: ${res.status} ${await res.text()}`);
+  }
+  const data = await res.json();
+  return {
+    sha: data.sha,
+    html: decodeBase64Utf8(data.content || ""),
+    path: data.path
+  };
+}
+
+async function githubPut(file, html, sha){
+  const cfg = validateCfg();
+  const path = `${cfg.folder}/${file}`;
+  const res = await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(path).replaceAll("%2F","/")}`, {
+    method: "PUT",
+    headers: {
+      "Authorization": `Bearer ${cfg.token}`,
+      "Accept": "application/vnd.github+json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: $("message").value.trim() || `update ${file}`,
+      content: encodeBase64Utf8(html),
+      sha,
+      branch: cfg.branch
+    })
+  });
+
+  if(!res.ok){
+    throw new Error(`Gagal update ${file}: ${res.status} ${await res.text()}`);
+  }
+  return await res.json();
+}
+
+function extractItems(html){
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return Array.from(doc.querySelectorAll("a[href]")).map(a => ({
+    url: a.getAttribute("href"),
+    anchor: (a.textContent || "").trim()
+  }));
+}
+
+function domainAnchor(url){
+  try{
+    return new URL(url).hostname.replace(/^www\./,"");
+  }catch(e){
+    return url;
+  }
+}
+
+function normalizeUrl(url){
+  const u = String(url || "").trim();
+  if(!u) return "";
+  if(/^https?:\/\//i.test(u)) return u;
+  return "https://" + u;
+}
+
+function parseLines(value){
+  return String(value || "")
+    .split(/\r?\n/)
+    .map(x => x.trim())
+    .filter(Boolean);
+}
+
+function mergeItems(oldItems, newItems){
+  const map = new Map();
+  [...oldItems, ...newItems].forEach(item => {
+    const url = normalizeUrl(item.url);
+    const anchor = String(item.anchor || domainAnchor(url)).trim();
+    if(!url) return;
+    const key = url + "|" + anchor.toLowerCase();
+    if(!map.has(key)) map.set(key, { url, anchor });
+  });
+  return Array.from(map.values());
+}
+
+function buildHiddenHtml(items){
+  return `<div style="position:absolute;left:-9999px;top:-9999px;">\n\n` +
+    items.map(x => `<p><a href="${escHtml(x.url)}">${escHtml(x.anchor)}</a></p>`).join("\n") +
+    `\n\n</div>`;
+}
+
+async function loadBoth(){
+  log("Loading dari GitHub...");
+  const link = await githubGet(FILES.link);
+  const konten = await githubGet(FILES.konten);
+
+  cache.link = { ...link, items: extractItems(link.html) };
+  cache.konten = { ...konten, items: extractItems(konten.html) };
+
+  renderList();
+  log(`Loaded:
+- ${FILES.link}: ${cache.link.items.length} item
+- ${FILES.konten}: ${cache.konten.items.length} item`);
+}
+
+function makeNewItemsForLink(urls, anchors){
+  return urls.map((url, i) => {
+    const clean = normalizeUrl(url);
+    return {
+      url: clean,
+      anchor: anchors[i] || domainAnchor(clean)
+    };
+  });
+}
+
+function makeNewItemsForKonten(urls, anchors){
+  return urls.map((url, i) => {
+    const clean = normalizeUrl(url);
+    return {
+      url: clean,
+      anchor: anchors[i] || domainAnchor(clean)
+    };
+  });
+}
+
+function renderList(){
+  const all = [
+    ...cache.link.items.map(x => ({...x, source: FILES.link})),
+    ...cache.konten.items.map(x => ({...x, source: FILES.konten}))
+  ];
+
+  $("list").innerHTML = all.map(x => `
+    <div class="item">
+      <a href="${escHtml(x.url)}" target="_blank" rel="noopener">${escHtml(x.anchor)}</a>
+      <small>${escHtml(x.url)}</small>
+      <small>Source: ${escHtml(x.source)}</small>
+    </div>
+  `).join("") || `<div class="item">Belum ada data. Load dulu, ya. Teknologi butuh dipanggil, bukan disemangati doang.</div>`;
+}
+
+async function ensureLoaded(){
+  if(!cache.link.sha || !cache.konten.sha){
+    await loadBoth();
+  }
+}
+
+async function previewOnly(){
+  await ensureLoaded();
+  const urls = parseLines($("urls").value);
+  const anchors = parseLines($("anchors").value);
+  const mode = $("mode").value;
+
+  let linkItems = cache.link.items;
+  let kontenItems = cache.konten.items;
+
+  if(mode === "both" || mode === "link"){
+    linkItems = mergeItems(linkItems, makeNewItemsForLink(urls, anchors));
+  }
+  if(mode === "both" || mode === "konten"){
+    kontenItems = mergeItems(kontenItems, makeNewItemsForKonten(urls, anchors));
+  }
+
+  cache.link.items = linkItems;
+  cache.konten.items = kontenItems;
+  renderList();
+  log(`Preview:
+- ${FILES.link}: ${linkItems.length} item
+- ${FILES.konten}: ${kontenItems.length} item
+
+Belum di-update ke GitHub.`);
+}
+
+async function addAndUpdate(){
+  await ensureLoaded();
+
+  const urls = parseLines($("urls").value);
+  const anchors = parseLines($("anchors").value);
+  const mode = $("mode").value;
+
+  if(!urls.length) throw new Error("URL kosong. Isi minimal 1 URL.");
+
+  let updated = [];
+
+  if(mode === "both" || mode === "link"){
+    const merged = mergeItems(cache.link.items, makeNewItemsForLink(urls, anchors));
+    const html = buildHiddenHtml(merged);
+    await githubPut(FILES.link, html, cache.link.sha);
+    cache.link.html = html;
+    cache.link.items = merged;
+    updated.push(FILES.link);
+  }
+
+  if(mode === "both" || mode === "konten"){
+    const merged = mergeItems(cache.konten.items, makeNewItemsForKonten(urls, anchors));
+    const html = buildHiddenHtml(merged);
+    await githubPut(FILES.konten, html, cache.konten.sha);
+    cache.konten.html = html;
+    cache.konten.items = merged;
+    updated.push(FILES.konten);
+  }
+
+  renderList();
+  log(`Sukses update GitHub:
+${updated.map(x => "- " + x).join("\n")}
+
+Cloudflare Pages akan auto deploy setelah commit. Tunggu sebentar sebelum buka URL live.`);
+}
+
+$("saveCfg").addEventListener("click", () => {
+  try{ saveCfg(); } catch(e){ log(e.message); }
+});
+
+$("loadBoth").addEventListener("click", async () => {
+  try{ await loadBoth(); } catch(e){ log(e.message); }
+});
+
+$("previewBtn").addEventListener("click", async () => {
+  try{ await previewOnly(); } catch(e){ log(e.message); }
+});
+
+$("addUpdate").addEventListener("click", async () => {
+  try{
+    log("Updating GitHub... jangan refresh, ini bukan kipas angin.");
+    await addAndUpdate();
+  }catch(e){
+    log(e.message);
+  }
+});
+
+loadCfg();
+</script>
+</body>
+</html>

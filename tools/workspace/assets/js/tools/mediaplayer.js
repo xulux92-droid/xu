@@ -1,0 +1,6 @@
+
+import { $, formatBytes, escapeHtml } from '../core/utils.js';
+let url='';
+function resetUrl(){ if(url){ try{ URL.revokeObjectURL(url); }catch{} url=''; } }
+export function render(){ return `<div class="card-grid"><section class="card"><input id="mediaInput" type="file" accept="audio/*,video/*,image/*" /><div id="mediaInfo" class="info-box">Pilih file media lokal.</div><div id="mediaPreview" class="preview-box media-frame">Belum ada media.</div></section></div>`; }
+export function init(){ $('#mediaInput').addEventListener('change', e=>{ const file=e.target.files?.[0]; if(!file) return; resetUrl(); url=URL.createObjectURL(file); $('#mediaInfo').innerHTML=`File: <strong>${escapeHtml(file.name)}</strong><br>Ukuran: ${formatBytes(file.size)}<br>Tipe: ${escapeHtml(file.type||'unknown')}`; if(file.type.startsWith('audio/')) $('#mediaPreview').innerHTML=`<audio controls src="${url}"></audio>`; else if(file.type.startsWith('video/')) $('#mediaPreview').innerHTML=`<video controls src="${url}"></video>`; else if(file.type.startsWith('image/')) $('#mediaPreview').innerHTML=`<img src="${url}" alt="preview" />`; else $('#mediaPreview').innerHTML=`<div class="info-box">Tipe file belum didukung.</div>`; }); }

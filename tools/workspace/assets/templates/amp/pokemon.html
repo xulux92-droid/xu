@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html amp lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<title>Pokemon Card AMP - WAHANABET</title>
+<meta name="description" content="SBOBET Mix Parlay WAHANABET dengan tampilan Pokémon card dan efek holografik.">
+<link rel="canonical" href="https://example.com/halaman-utama">
+
+<script async src="https://cdn.ampproject.org/v0.js"></script>
+
+<style amp-boilerplate>
+body{animation:-amp-start 8s steps(1,end) 0s 1 normal both}
+@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
+</style>
+<noscript><style amp-boilerplate>body{animation:none}</style></noscript>
+
+<style amp-custom>
+:root{
+  --bg-url:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1920');
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+}
+
+/* BACKGROUND */
+.page-bg{
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.6)),
+    var(--bg-url) center center / cover no-repeat;
+  z-index:0;
+}
+
+.page-wrap{
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+/* CARD */
+.pokemon-card{
+  width:420px;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  background:#f2c400;
+}
+
+.card-image amp-img{
+  width:100%;
+}
+
+.info-box{
+  padding:16px;
+  background:linear-gradient(180deg,#f7d91b,#efc600);
+}
+
+.title-box{
+  background:rgba(255,255,255,0.25);
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
+}
+
+.card-title{
+  margin:0 0 6px;
+  font-size:22px;
+  font-weight:900;
+  color:#241500;
+}
+
+.card-desc{
+  margin:0;
+  font-size:14px;
+  font-weight:700;
+  color:#2d1b00;
+}
+
+.action-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:16px;
+  font-weight:900;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn-login{background:#d32f2f}
+.btn-daftar{background:#1565c0}
+
+/* BLINK */
+.btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,0.5),transparent 80%);
+  transform:translateX(-120%);
+  animation:blink 2s infinite;
+}
+
+@keyframes blink{
+  0%{transform:translateX(-120%)}
+  100%{transform:translateX(120%)}
+}
+
+/* HOLO */
+.pokemon-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent);
+  background-size:200% 200%;
+  animation:holo 3s infinite;
+  mix-blend-mode:screen;
+}
+
+@keyframes holo{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 100%}
+}
+
+/* SPARKLE */
+.pokemon-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px);
+  background-size:40px 40px;
+  opacity:0.2;
+  animation:sparkle 6s linear infinite;
+}
+
+@keyframes sparkle{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-40px)}
+}
+</style>
+</head>
+
+<body>
+<div class="page-bg"></div>
+
+<div class="page-wrap">
+  <div class="pokemon-card">
+
+    <div class="card-image">
+      <amp-img
+        src="https://storage.googleapis.com/garuda-force_cdn/38/revisi-amp-pic/labonos-sbobet-mix-parlay.png"
+        width="700"
+        height="650"
+        layout="responsive"
+        alt="pokemon card">
+      </amp-img>
+    </div>
+
+    <div class="info-box">
+      <div class="title-box">
+        <h1 class="card-title">SBOBET MIX PARLAY WAHANABET</h1>
+        <p class="card-desc">Link login stabil 24 jam dengan pasaran lengkap, odds tinggi, dan tampilan Pokémon card + efek holografik blink.</p>
+      </div>
+
+      <div class="action-grid">
+        <a class="btn btn-login" href="https://myredirects.site/mkt05/" target="_blank">LOGIN</a>
+        <a class="btn btn-daftar" href="https://myredirects.site/mkt05/" target="_blank">DAFTAR</a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

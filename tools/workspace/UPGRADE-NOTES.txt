@@ -1,0 +1,20 @@
+Xu_Seo Workspace Upgrade Notes
+
+1. Dashboard card descriptions now only show tool functions and usage.
+2. Dashboard UI polished with cleaner hero, grouped tools, better cards, spacing, and mobile layout.
+3. Login copy and layout cleaned for stable auth screen.
+4. Base path changed to relative ./ for subfolder hosting such as /lampha/workspace/.
+5. Role access added in tool-config.js for owner, admin, and user.
+6. Router now blocks restricted tools and catches render/init errors safely.
+7. Login session now stores username, role, and email.
+8. User & Access now displays current role and manages local users with owner-only add/remove.
+9. Settings keeps theme available for all roles and publish/CDN config for owner/admin.
+10. Uploader now generates Public URL, HTML, Markdown, wget, curl, and Linux check commands.
+11. Terminal now supports helper commands for wget and curl.
+12. Text in main dashboard/tools was cleaned to focus on function descriptions.
+
+AMP BUILDER + SEO EXPERT PATCH:
+1. AMP Builder now has 5 theme choices: Golden Luxury, Neon Cyberpunk, Red Casino Shine, Iceberg Clean, Purple Sunset.
+2. AMP output now uses themed background, glass card layout, large hero area, CTA, responsive mobile styling, and shine overlay.
+3. Plain text content is converted into paragraph HTML automatically.
+4. SEO Expert route now uses relative path `seo/` so it works under subfolders like `/lampha/workspace/`.

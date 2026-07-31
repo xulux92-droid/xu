@@ -1,0 +1,5 @@
+
+import { $, notify, storage, downloadText } from '../core/utils.js';
+const KEY='xu-notepad';
+export function render(){ const data = storage.get(KEY,{title:'',body:''}); return `<div class="card-grid"><section class="card"><div class="two-col"><input id="noteTitle" placeholder="Judul catatan" value="${data.title||''}" /><div class="action-row"><button class="btn primary" id="saveNoteBtn">Simpan</button><button class="btn ghost" id="downloadNoteBtn">Download</button><button class="btn ghost" id="clearNoteBtn">Clear</button></div></div><textarea id="noteBody" placeholder="Tulis catatan...">${data.body||''}</textarea></section></div>`; }
+export function init(){ $('#saveNoteBtn').onclick=()=>{ storage.set(KEY,{title:$('#noteTitle').value,body:$('#noteBody').value}); notify('Catatan disimpan.');}; $('#clearNoteBtn').onclick=()=>{$('#noteTitle').value='';$('#noteBody').value='';storage.remove(KEY);}; $('#downloadNoteBtn').onclick=()=>downloadText((($('#noteTitle').value||'note')+'.txt'), $('#noteBody').value); }

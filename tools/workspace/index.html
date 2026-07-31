@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xu_Seo Workspace Pro</title>
+  <meta name="theme-color" content="#0b1220" />
+  <base href="./" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body data-theme="red-rainbow" class="auth-locked">
+
+  <!-- LOGIN -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-overlay"></div>
+
+    <section class="login-left">
+      <div class="login-panel">
+        <div class="login-topline">PRIVATE WORKSPACE LOGIN</div>
+
+        <h1 class="login-title">
+          <span>Xu_Dashboard</span>
+          <span>Login_Panel</span>
+        </h1>
+
+        <p class="login-subtitle">
+          Login untuk membuka dashboard tools, storage, template, dan workspace SEO.
+        </p>
+
+        <form class="login-form" id="loginForm" autocomplete="off">
+          <div class="field-group">
+            <label for="username">USERNAME</label>
+            <input type="text" id="username" name="username" placeholder="Masukkan username" />
+          </div>
+
+          <div class="field-group">
+            <label for="password">PASSWORD</label>
+            <input type="password" id="password" name="password" placeholder="Masukkan password" />
+          </div>
+
+          <button class="login-btn" id="loginBtn" type="submit">
+            <span class="btn-text">ACCESS WORKSPACE</span>
+          </button>
+
+          <div class="login-meta">
+            <span>Session timeout: 30 menit idle</span>
+            <span>© 2026 Xu Workspace</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="login-right">
+      <div class="visual-bg"></div>
+      <img
+        class="login-character"
+        src="https://storage.googleapis.com/garuda-force_cdn/38/konten/aaaaa.png"
+        alt="Xu Dashboard Character"
+      />
+    </section>
+  </div>
+
+  <!-- APP -->
+  <div class="app-bg"></div>
+
+  <div class="app-shell" id="appShell">
+    <header class="topbar">
+      <div class="brand-row">
+        <button class="icon-btn mobile-only" id="sidebarToggle" aria-label="Toggle menu">☰</button>
+        <div class="brand-badge">XU</div>
+        <div class="brand-copy">
+          <h1>Xu_Seo Workspace Pro</h1>
+          <p>Dashboard tools SEO, CDN, template, content, dan utility.</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="chip-btn" id="focusToggle" type="button">Focus Mode</button>
+        <button class="chip-btn" id="themeQuickBtn" type="button">Theme</button>
+        <button class="chip-btn" id="logoutBtn" type="button">Logout</button>
+        <div class="status-chip" id="userStatus">User: Guest</div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+          <div>
+            <strong>Tools</strong>
+            <small>Compact mode</small>
+          </div>
+          <button class="icon-btn desktop-only" id="collapseSidebarBtn" aria-label="Collapse sidebar">⇤</button>
+        </div>
+
+        <div class="sidebar-search">
+          <input type="search" id="navSearch" placeholder="Cari tools..." />
+        </div>
+
+        <nav class="nav-groups" id="navGroups"></nav>
+      </aside>
+
+      <main class="workspace">
+        <section class="workspace-head card compact-card">
+          <div>
+            <strong id="viewTitle">Dashboard</strong>
+            <small id="viewDescription">Ringkasan fungsi tools dan akses cepat.</small>
+          </div>
+          <div class="workspace-head-actions">
+            <button class="icon-btn" id="workspaceExpandBtn" type="button" title="Focus workspace">⤢</button>
+            <button class="icon-btn mobile-only" id="quickThemeBtn" type="button" title="Theme">🎨</button>
+          </div>
+        </section>
+
+        <section id="viewMount" class="workspace-view"></section>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+
+
+<!-------------------------------------------------
+ /$$   /$$ /$$$$$$$$ /$$$$$$$   /$$$$$$  /$$     /$$       /$$      /$$  /$$$$$$   /$$$$$$        /$$   /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$  
+| $$  | $$| $$_____/| $$__  $$ /$$__  $$|  $$   /$$/      | $$  /$ | $$ /$$__  $$ /$$__  $$      | $$  | $$| $$_____/| $$__  $$| $$_____/
+| $$  | $$| $$      | $$  \ $$| $$  \ $$ \  $$ /$$/       | $$ /$$$| $$| $$  \ $$| $$  \__/      | $$  | $$| $$      | $$  \ $$| $$      
+| $$$$$$$$| $$$$$   | $$$$$$$ | $$$$$$$$  \  $$$$/        | $$/$$ $$ $$| $$$$$$$$|  $$$$$$       | $$$$$$$$| $$$$$   | $$$$$$$ | $$$$$   
+| $$__  $$| $$__/   | $$__  $$| $$__  $$   \  $$/         | $$$$_  $$$$| $$__  $$ \____  $$      | $$__  $$| $$__/   | $$__  $$| $$__/   
+| $$  | $$| $$      | $$  \ $$| $$  | $$    | $$          | $$$/ \  $$$| $$  | $$ /$$  \ $$      | $$  | $$| $$      | $$  \ $$| $$      
+| $$  | $$| $$$$$$$$| $$$/| $$| $$  | $$    | $$/         | $$/   \  $$| $$  | $$|  $$$$$$/      | $$  | $$| $$$$$$$$| $$$$$$$/| $$$$$$$$
+|__/  |__/|________/|_______/ |__/  |__/    |__/          |__/     \__/|__/  |__/ \______/       |__/  |__/|________/|_______/ |________/
+!-------------------------------------------------
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠚⣷⠀⠀⣀⣤⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡞⣟⢀⡴⠋⠀⠀⣿⠖⠋⢀⡏⠀⠀⠀⡀⡀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⡀⡼⠀⢸⡟⡸⠀⠀⠀⠃⠀⠀⢸⡧⠜⠛⠛⣻⠃⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢺⢾⡃⠀⠈⣴⠁⢻⡀⠀⠀⢀⡠⠀⠀⠀⠀⢸⣇⣤⡀⠀
+⠀⠀⠀⠀⠀⠀⠀⠸⡜⠂⠀⠀⣟⠀⢸⠑⠀⠰⠁⠀⠀⠀⠀⠀⠛⠉⡼⠁⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⣷⣾⣿⣿⣿⣿⣾⣶⣶⣤⣀⡀⢰⠕⠋⠀⠀⠸⠧⣤⡄
+⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣔⠈⣤⣶⡚⠁⠀
+⠀⠀⠀⠀⣠⣶⡀⢸⡟⠿⡿⠿⡟⠻⠿⣿⣿⣿⣿⣿⣿⣿⠿⣿⠋⠁⠀⠀⠀
+⠀⠀⠀⢰⢧⡷⡿⢘⡎⠀⠀⠐⣶⢶⣲⠈⠙⠋⠉⠉⠁⡘⡯⣿⡶⣆⡀⠀⠀
+⠀⠀⠀⢾⢈⣼⣿⣤⣿⣶⣶⣶⣿⣿⣧⣤⣄⣀⣀⣤⣾⣿⣿⢯⢇⣿⢳⠀⠀
+⠀⠀⠀⠈⠙⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣌⣷⣬⠏⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠉⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠻⠟⠋⠁⠀⠀⠀
+⠀⠀⠀⠀⢀⣀⣀⡀⣰⣿⣿⣿⣿⣿⣿⣿⡿⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢀⣤⣶⣴⣿⣿⣿⡧⠀⠉⠙⢿⣿⣿⣿⣿⣾⣶⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠉⠛⠛⠿⣿⣿⡇⠀⠀⠀⠀⠻⣿⣿⣿⡿⠿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠸⣿⣿⠁⠀⠀ 
+   
+// Daijobu, boku wa saikyou dakara                                                                                                                           
+------------------------------------------------->
+
+<!DOCTYPE html>
+<html amp lang="en-ID">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>INDOJAWA88 : Agen Situs Link Live Casino Online Judi Resmi Terpercaya Tiap Hari</title>
+
+  <meta name="description" content="INDOJAWA88 merupakan agen situs live casino online dengan akses permainan lengkap dan stabil, mudah dimainkan langsung dari perangkat smartphone." />
+  <meta name="robots" content="index,follow" />
+  <link href="https://images.linkcdn.cloud/V2/1619/favicon/favicon-611293869.png" rel="shortcut icon" type="image/x-icon" />
+
+  <link rel="canonical" href="https://marriageregistration.net/" />
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+	<style amp-boilerplate>
+      body {
+         -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+         -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+         -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+         animation: -amp-start 8s steps(1, end) 0s 1 normal both	
+      }
+
+      @-webkit-keyframes -amp-start {
+         from {
+            visibility: hidden
+         }
+
+         to {
+            visibility: visible
+         }
+      }
+
+      @-moz-keyframes -amp-start {
+         from {
+            visibility: hidden
+         }
+
+         to {
+            visibility: visible
+         }
+      }
+
+      @-ms-keyframes -amp-start {
+         from {
+            visibility: hidden
+         }
+
+         to {
+            visibility: visible
+         }
+      }
+
+      @-o-keyframes -amp-start {
+         from {
+            visibility: hidden
+         }
+
+         to {
+            visibility: visible
+         }
+      }
+
+      @keyframes -amp-start {
+         from {
+            visibility: hidden
+         }
+
+         to {
+            visibility: visible
+         }
+      }
+   </style>
+   <noscript>
+      <style amp-boilerplate>
+         body {
+            -webkit-animation: none;
+            -moz-animation: none;
+            -ms-animation: none;
+            animation: none
+         }
+      </style>
+   </noscript>
+
+  <style amp-custom>
+    *{box-sizing:border-box}
+
+	body{
+	  font-family:'Montserrat',sans-serif;
+	  background:
+		linear-gradient(
+		  180deg,
+		  rgba(30,0,0,.4),
+		  rgba(10,0,0,.9)
+		),
+
+		url("https://karenprakarsa-wq.github.io/img/casino1.png") center/cover no-repeat fixed;
+
+	  color:#ffffff;
+	  min-height:100vh;
+	  margin:0;
+	  padding:20px;
+	  display:flex;
+	  flex-direction:column;
+	  align-items:center;
+	  justify-content:center;
+	  overflow-x:hidden;
+	}
+
+    .imlek-glow{
+      position:fixed;
+      top:50%;
+      left:50%;
+      width:320px;
+      height:320px;
+      transform:translate(-50%,-50%);
+      background:radial-gradient(circle,#6bff66 0%,transparent 70%);
+      opacity:.12;
+      filter:blur(90px);
+      z-index:-1;
+      animation:pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse{
+      0%,100%{opacity:.1}
+      50%{opacity:.2}
+    }
+
+    /* LOGO */
+    .logo-container{
+      width:100px;
+      height:100px;
+      position:relative;
+      margin-bottom:1px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .logo-img{
+      width:105px;
+      filter:drop-shadow(0 0 15px rgba(60, 255, 0, 0.6));
+      z-index:2;
+    }
+
+    h1{
+      font-family:'Cinzel',serif;
+      font-size:30px;
+      letter-spacing:3px;
+      margin:0;
+      text-shadow:0 0 15px rgba(255, 238, 0, 0.6);
+    }
+
+    .sub-heading{
+      margin:5px 0 28px;
+      font-size:13px;
+      letter-spacing:3px;
+      color:#09ff00;
+      border-bottom:1px solid rgba(0, 255, 42, 0.4);
+      padding-bottom:8px;
+      text-align:center;
+    }
+
+	.banner-card{
+	  max-width:420px;
+	  width:100%;
+	  border-radius:18px;
+	  overflow:hidden;
+	  margin-bottom:15px;
+	  position:relative;
+	  padding:3px; /* tebal frame */
+
+	  background:linear-gradient(
+		135deg,
+		#33ff00,
+		#00b445,
+		#00ff37,
+		#00ec20,
+		#00ff00,
+		#00a81c,
+		#88ff00
+	  );
+
+	  box-shadow:
+		0 0 25px rgba(22, 255, 14, 0.45),
+		0 18px 45px rgba(0, 255, 42, 0.7);
+	}
+
+	.banner-card amp-img{
+	  border-radius:15px;
+	}
+	
+    .btn-stack{
+	  position:relative;
+      z-index:2;
+      max-width:380px;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .btn-card{
+      background:rgba(20,0,0,.7);
+      border:1px solid rgba(255,215,102,.25);
+      border-radius:14px;
+      padding:6px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      transition:.3s;
+    }
+
+    .btn-card:hover{
+      transform:translateY(-3px);
+      border-color:#275029;
+      box-shadow:0 0 25px rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-label{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding-left:14px;
+    }
+
+    .icon-box{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:radial-gradient(circle,#66ff7a,#fff600);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .btn-title{
+      font-family:'Cinzel',serif;
+      font-size:16px;
+      color:#00ff0d;
+      letter-spacing:1px;
+    }
+
+    .btn-sub{
+      font-size:10px;
+      color:#1eff00;
+      letter-spacing:1px;
+    }
+
+    .action-link{
+      padding:12px 30px;
+      border-radius:8px;
+      font-size:12px;
+      font-weight:700;
+      text-decoration:none;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+    }
+
+    .btn-outline{
+      background:linear-gradient(135deg,#d9ff00,#00ff22);
+      color:#000000;
+      box-shadow:0 0 20px rgba(60, 255, 0, 0.6);
+    }
+
+    .btn-solid{
+      background:linear-gradient(135deg,#d9ff00,#00ff22);
+      color:#000000;
+      box-shadow:0 0 20px rgba(81, 255, 0, 0.6);
+    }
+
+    .btn-link{
+      border:1px solid #00ff15;
+      color:#fff;
+    }
+
+    .copyright{
+      margin-top:40px;
+      font-size:15px;
+      letter-spacing:2px;
+      color:#00ff00;
+      text-transform:uppercase;
+    }
+	
+	.glass-effect{
+	  position:relative;
+	  overflow:hidden;
+	}
+
+	.glass-effect::after{
+	  content:"";
+	  position:absolute;
+	  top:0;
+	  left:-150%;
+	  width:120%;
+	  height:100%;
+	  background:
+		linear-gradient(
+		  120deg,
+		  transparent 0%,
+		  rgba(14, 233, 14, 0.3) 40%,
+		  rgba(255, 215, 0, 0.3) 50%,
+		  rgba(255, 215, 0, 0.3) 60%,
+		  transparent 100%
+		);
+	  transform:skewX(-15deg);
+	  animation:glassShine 4.5s ease-in-out infinite;
+	  pointer-events:none;
+	}
+
+	@keyframes glassShine{
+	  0%{
+		left:-150%;
+	  }
+	  50%{
+		left:150%;
+	  }
+	  100%{
+		left:150%;
+	  }
+	}
+
+	.sakura-fall{
+	  position:fixed;
+	  top:-15%;
+	  left:-10%;
+	  width:120%;
+	  height:120%;
+	  pointer-events:none;
+	  z-index:1;
+	  overflow:hidden;
+	}
+
+	.sakura-fall::before,
+	.sakura-fall::after{
+	  content:"";
+	  position:absolute;
+	  inset:0;
+	  background:
+		radial-gradient(circle at 10% 0%, rgba(0, 255, 0, 0.9) 0 5px, transparent 6px),
+		radial-gradient(circle at 35% 15%, rgba(9, 255, 0, 0.85) 0 6px, transparent 7px),
+		radial-gradient(circle at 60% 5%, rgba(0, 255, 55, 0.9) 0 5px, transparent 6px),
+		radial-gradient(circle at 85% 20%, rgba(43, 255, 0, 0.8) 0 6px, transparent 7px);
+	  background-size:320px 320px;
+	  animation:sakuraFall 22s linear infinite;
+	  opacity:.75;
+	}
+
+	.sakura-fall::after{
+	  background-size:420px 420px;
+	  animation:sakuraFallSlow 32s linear infinite;
+	  opacity:.45;
+	}
+
+	@keyframes sakuraFall{
+	  0%{
+		transform:translateY(-20%) translateX(0);
+	  }
+	  100%{
+		transform:translateY(120%) translateX(18%);
+	  }
+	}
+
+	@keyframes sakuraFallSlow{
+	  0%{
+		transform:translateY(-25%) translateX(-5%);
+	  }
+	  100%{
+		transform:translateY(120%) translateX(12%);
+	  }
+	}
+
+	.imlek-premium-frame{
+	  position:fixed;
+	  inset:0;
+	  pointer-events:none;
+	  z-index:0;
+	  overflow:hidden;
+	}
+
+	.imlek-premium-frame::before{
+	  content:"";
+	  position:absolute;
+	  inset:0;
+	  background:
+		radial-gradient(circle at 8% 50%, rgba(0, 255, 0, 0.18) 0 120px, transparent 130px),
+		radial-gradient(circle at 12% 60%, rgba(72, 255, 0, 0.14) 0 90px, transparent 100px),
+		radial-gradient(circle at 92% 48%, rgba(51, 255, 0, 0.18) 0 120px, transparent 130px),
+		radial-gradient(circle at 88% 62%, rgba(30, 255, 0, 0.14) 0 90px, transparent 100px);
+	  filter:blur(2px);
+	}
+
+	.imlek-premium-frame::after{
+	  content:"";
+	  position:absolute;
+	  inset:-20%;
+	  background:
+		radial-gradient(circle, rgba(72, 255, 0, 0.8) 1px, transparent 2px),
+		radial-gradient(circle, rgba(30, 255, 0, 0.6) 1px, transparent 2px);
+	  background-size:160px 160px, 220px 220px;
+	  animation:goldFloat 28s linear infinite;
+	  opacity:.35;
+	}
+
+	@keyframes goldFloat{
+	  from{
+		transform:translateY(0);
+	  }
+	  to{
+		transform:translateY(-160px);
+	  }
+	}
+  </style>
+</head>
+
+<body>
+  <div class="imlek-premium-frame"></div>
+  <div class="sakura-fall"></div>
+  <div class="imlek-glow"></div>
+
+  <div class="logo-container">
+    <div class="logo-ring"></div>
+    <a href="https://reg.sengtenang.xyz/ws/">
+      <amp-img class="logo-img" src="https://karenprakarsa-wq.github.io/gif/daff.gif" width="300" height="100" layout="fixed" alt="BENTO4D"></amp-img>
+    </a>
+  </div>
+
+  <h1>INDOJAWA88</h1>
+  <div class="sub-heading">MINIMAL DEPOSIT RP.20.000</div>
+
+  <div class="banner-card glass-effect">
+    <amp-img src="https://karenprakarsa-wq.github.io/img/casino1.png" width="500" height="500" layout="responsive" alt="Banner"></amp-img>
+  </div>
+
+  <div class="btn-stack">
+    <div class="btn-card">
+      <div class="btn-label">
+        <div>
+          <div class="btn-title">LOGIN</div>
+          <div class="btn-sub">Masuk Sekarang</div>
+        </div>
+      </div>
+      <a class="action-link btn-outline" href="https://reg.sengtenang.xyz/ws/">LOGIN</a>
+    </div>
+
+    <div class="btn-card">
+      <div class="btn-label">
+        <div>
+          <div class="btn-title">DAFTAR</div>
+          <div class="btn-sub">Buat Akun Hanya 1 Menit</div>
+        </div>
+      </div>
+      <a class="action-link btn-solid" href="https://reg.sengtenang.xyz/ws/">DAFTAR</a>
+    </div>
+  </div>
+
+  <div class="copyright">© HARTA • TAHTA • RANKING 😎 | IDJ-BL </div>
+</body>
+</html>
+                                                                       

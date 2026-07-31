@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO Expert Iceberg</title>
+  <link rel="stylesheet" href="assets/css/seo.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand glass-panel">
+        <div class="brand-badge">SEO</div>
+        <div>
+          <h1>SEO Expert</h1>
+          <p>Workspace tools SEO</p>
+        </div>
+      </div>
+
+      <div class="sidebar-search glass-panel compact">
+        <input id="toolSearch" type="search" placeholder="Cari tools SEO..." />
+      </div>
+
+      <nav id="sidebarNav" class="nav"></nav>
+    </aside>
+
+    <main class="workspace">
+      <header class="workspace-head glass-panel">
+        <div>
+          <h2 id="toolTitle">SEO Expert Dashboard</h2>
+          <p id="toolDesc">Pilih tools SEO untuk membuat konten, landing page, meta, sitemap, robots, link, dan optimasi on-page.</p>
+        </div>
+        <div class="head-actions">
+          <button class="glass-btn" id="toggleSidebarBtn" type="button">☰ Menu</button>
+          <button class="glass-btn" id="backDashboardBtn" type="button">↺ Dashboard</button>
+          <button class="glass-btn" id="seoLogoutBtn" type="button">Logout</button>
+        </div>
+      </header>
+
+      <section id="workspaceMount" class="workspace-body glass-panel workspace-body-wide"></section>
+    </main>
+  </div>
+
+  <div id="toastStack" class="toast-stack"></div>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

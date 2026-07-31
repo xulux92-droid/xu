@@ -1,0 +1,5 @@
+
+import { $, formatBytes, escapeHtml } from '../core/utils.js';
+function renderFiles(files){ const list=$('#fmList'); if(!files.length){list.innerHTML='<div class="info-box">Belum ada file dipilih.</div>'; return;} list.innerHTML=Array.from(files).map(f=>`<div class="file-row"><strong>${escapeHtml(f.webkitRelativePath||f.name)}</strong><div class="muted">${formatBytes(f.size)} · ${escapeHtml(f.type||'unknown')}</div></div>`).join(''); }
+export function render(){ return `<div class="card-grid"><section class="card two-col"><div class="mini-card"><h3>Upload file</h3><input id="fmFiles" type="file" multiple /></div><div class="mini-card"><h3>Upload folder</h3><input id="fmFolder" type="file" webkitdirectory directory multiple /></div></section><section class="card"><div id="fmList" class="file-list"><div class="info-box">Belum ada file dipilih.</div></div></section></div>`; }
+export function init(){ $('#fmFiles').addEventListener('change',e=>renderFiles(e.target.files||[])); $('#fmFolder').addEventListener('change',e=>renderFiles(e.target.files||[])); }
