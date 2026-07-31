@@ -1,0 +1,11 @@
+name = "xu-media-factory"
+compatibility_date = "2026-07-30"
+pages_build_output_dir = "."
+
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "xu-media-storage"
+preview_bucket_name = "xu-media-storage-preview"
+
+[vars]
+APP_NAME = "XU Media Factory"
